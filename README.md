@@ -5,9 +5,9 @@
 # 客户端 .ssh 配置
 .config文件中
  # GitHub 配置
-  Host github.com
-    HostName github.com
-    User ls-github123
+  Host github.com /
+    HostName github.com /
+    User ls-github123 /
     IdentityFile "D:/ssh-key/github_ssh"
 
 # Windows端-powershell生成 SSH密钥对
