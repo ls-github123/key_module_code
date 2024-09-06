@@ -1,4 +1,3 @@
- 
 # 自定义配置JWT token属性
 from rest_framework_simplejwt.tokens import RefreshToken
 
