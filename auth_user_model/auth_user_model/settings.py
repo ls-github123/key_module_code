@@ -48,8 +48,16 @@ AUTH_USER_MODEL = 'users.CustomUser'
 
 # 自定义配置rest_framework
 REST_FRAMEWORK = {
+    # 定义如何从请求中提取用户身份（JWT 令牌）
     'DEFAULT_AUTHENTICATION_CLASSES':(
         'rest_framework_simplejwt.authentication.JWTAuthentication',  # 使用JWT认证
+    ),
+    # 定义用户身份验证通过后是否有权限访问特定视图（比如必须登录后才能访问）
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',  
+        # 全局要求所有视图用户必须登录
+        # 配置后，所有的 API 视图默认都会使用 JWT 认证，并且只有已登录的用户才能访问
+        # 公开视图 使用 permission_classes = [AllowAny] 覆盖设置
     )
 }
 

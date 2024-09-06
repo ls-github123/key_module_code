@@ -57,6 +57,8 @@ class UserLoginView(APIView):
 # 继承自APIView 通用API视图类(自定义行为视图)
 class UserDetailView(APIView):
     permission_classes = [IsAuthenticated] # 配置访问权限 仅允许已认证用户访问
+    # permission_classes = [AllowAny]  # 允许公开访问，不需要登录
+
     
     def get(self, request, *args, **kwargs):
         # 从请求中获取user对象
