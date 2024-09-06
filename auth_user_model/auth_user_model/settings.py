@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-c9i5*(o&gd0$pn-o2n)w@#fdv#qn4zup_%6%#nw094nr%cpsu(
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
+CORS_ORIGIN_ALLOW_ALL = True # 配置跨域,允许所有访问
 
 # Application definition
 
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt', # 配置simple_JWT应用组件
+    'corsheaders', # 跨域配置
     'users',
 ]
 
@@ -70,6 +71,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware', # 跨域配置中间件
 ]
 
 ROOT_URLCONF = 'auth_user_model.urls'
