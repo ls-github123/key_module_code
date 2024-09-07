@@ -1,0 +1,13 @@
+{
+  "name": "key_module_code",
+  "version": "1.0.0",
+  "description": "关键模块代码参考模板(根据个人理解编写)\r # 远程代码同步时涉及到的操作及教程",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
