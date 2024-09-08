@@ -15,6 +15,7 @@ class CustomToken(RefreshToken):
     def set_user(self, user):
         # 添加令牌的载荷(payload)添加自定义字段
         self.payload.update({
+            'user_id': user.id,
             'username': user.username,
             'student_number': getattr(user, 'student_number', ''),
             'class_name': getattr(user, 'class_name', ''),
@@ -28,6 +29,7 @@ class CustomToken(RefreshToken):
         # 调用父类 RefreshToken 的 access_token 方法来获取标准的访问令牌
         token = super().access_token
         token.payload.update({ # 更新访问令牌的载荷以包含自定义字段
+            'user_id': self.user.id,
             'username': self.user.username,
             'student_number': getattr(self.user, 'student_number', ''),
             'class_name': getattr(self.user, 'class_name', ''),
