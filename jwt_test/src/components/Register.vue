@@ -25,9 +25,9 @@
         <el-button type="primary" @click="onSubmit">提交</el-button>
       </el-form-item>
     </el-form>
-  </template>
+</template>
   
-  <script>
+<script>
   import axios from 'axios'
   import { ElMessage } from 'element-plus'
   
@@ -70,11 +70,11 @@
       }
     }
   }
-  </script>
+</script>
   
-  <style>
+<style>
   .register-form {
     max-width: 500px;
     margin: 0 auto;
   }
-  </style>
+</style>

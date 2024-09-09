@@ -10,7 +10,7 @@
         <el-button type="primary" @click="handleLogin">登录</el-button>
       </el-form-item>
     </el-form>
-  </template>
+</template>
   
   <script setup>
   import { ref } from 'vue'
@@ -42,14 +42,13 @@
     ElMessage.error('Login failed: ' + error.message)
   }
 }
-
-  </script>
+</script>
   
-  <style scoped>
-  .login-form {
-    max-width: 400px;
-    margin: auto;
-    padding: 20px;
-  }
-  </style>
+<style scoped>
+.login-form {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+}
+</style>
   
