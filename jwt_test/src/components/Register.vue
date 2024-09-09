@@ -1,29 +1,28 @@
 <template>
     <el-form :model="form" :rules="rules" ref="registerForm" label-width="100px" class="register-form">
-      <el-form-item label="Username" prop="username">
+      <el-form-item label="用户名" prop="username">
         <el-input v-model="form.username" autocomplete="off"></el-input>
       </el-form-item>
-      <el-form-item label="Password" prop="password">
+      <el-form-item label="密码" prop="password">
         <el-input type="password" v-model="form.password" autocomplete="off"></el-input>
       </el-form-item>
-      <el-form-item label="Email" prop="email">
+      <el-form-item label="邮箱" prop="email">
         <el-input v-model="form.email" autocomplete="off"></el-input>
       </el-form-item>
-      <el-form-item label="Student Number" prop="student_number">
+      <el-form-item label="学号" prop="student_number">
         <el-input v-model="form.student_number" autocomplete="off"></el-input>
       </el-form-item>
-      <el-form-item label="Class Name" prop="class_name">
+      <el-form-item label="班级" prop="class_name">
         <el-input v-model="form.class_name" autocomplete="off"></el-input>
       </el-form-item>
-      <el-form-item label="Gender" prop="gender">
-        <el-select v-model="form.gender" placeholder="Select Gender">
-          <el-option label="Male" value="male"></el-option>
-          <el-option label="Female" value="female"></el-option>
-          <el-option label="Other" value="other"></el-option>
+      <el-form-item label="性别" prop="gender">
+        <el-select v-model="form.gender" placeholder="选择性别">
+          <el-option label="男" value="M"></el-option>
+          <el-option label="女" value="F"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">Register</el-button>
+        <el-button type="primary" @click="onSubmit">提交</el-button>
       </el-form-item>
     </el-form>
   </template>
@@ -44,12 +43,12 @@
           gender: '',
         },
         rules: {
-          username: [{ required: true, message: 'Please input your username', trigger: 'blur' }],
-          password: [{ required: true, message: 'Please input your password', trigger: 'blur' }],
-          email: [{ required: true, message: 'Please input your email', trigger: 'blur' }],
-          student_number: [{ required: true, message: 'Please input your student number', trigger: 'blur' }],
-          class_name: [{ required: true, message: 'Please input your class name', trigger: 'blur' }],
-          gender: [{ required: true, message: 'Please select your gender', trigger: 'change' }]
+          username: [{ required: true, message: '请输入用户名!', trigger: 'blur' }],
+          password: [{ required: true, message: '请设置密码!', trigger: 'blur' }],
+          email: [{ required: true, message: '请输入邮箱信息', trigger: 'blur' }],
+          student_number: [{ required: true, message: '请输入学号', trigger: 'blur' }],
+          class_name: [{ required: true, message: '请输入班级', trigger: 'blur' }],
+          gender: [{ required: true, message: '请选择性别', trigger: 'change' }]
         }
       }
     },
@@ -58,13 +57,13 @@
         this.$refs.registerForm.validate(async (valid) => {
           if (valid) {
             try {
-              const response = await axios.post('/register/', this.form)
-              ElMessage.success('Registration successful!')
+              const response = await axios.post('http://127.0.0.1:8000/users/register/', this.form)
+              ElMessage.success('账户注册成功!')
             } catch (error) {
-              ElMessage.error('Registration failed: ' + error.response.data.detail)
+              ElMessage.error('注册失败: ' + error.response.data.detail)
             }
           } else {
-            ElMessage.error('Please fill in the form correctly.')
+            ElMessage.error('请正确填写注册表单信息!')
             return false
           }
         })
