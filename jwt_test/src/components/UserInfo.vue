@@ -2,11 +2,15 @@
   <el-container style="padding: 20px;">
     <!-- 用户信息表格 -->
     <el-table :data="[userInfo]" stripe>
-      <el-table-column prop="username" label="Username" />
-      <el-table-column prop="email" label="Email" />
-      <el-table-column prop="student_number" label="Student Number" />
-      <el-table-column prop="class_name" label="Class" />
-      <el-table-column prop="gender" label="Gender" />
+      <el-table-column prop="username" label="用户名" />
+      <el-table-column prop="email" label="邮箱" />
+      <el-table-column prop="student_number" label="学号" />
+      <el-table-column prop="class_name" label="班级" />
+      <el-table-column
+          prop="gender"
+          label="性别"
+          :formatter="formatGender"
+      />
     </el-table>
 
     <!-- 退出按钮 -->
@@ -31,7 +35,7 @@ const fetchUserInfo = async () => {
   try {
     const token = localStorage.getItem('token')  // 从localStorage获取token
     if (!token) {
-      throw new Error('没有令牌!')
+      throw new Error('用户未登录!')
     }
 
     // 发起请求获取用户信息
@@ -43,15 +47,20 @@ const fetchUserInfo = async () => {
     
     userInfo.value = response.data  // 将用户信息保存到userInfo中
   } catch (error) {
-    ElMessage.error('Failed to fetch user information: ' + error.message)  // 显示错误信息
+    ElMessage.error('无法获取到用户信息: ' + error.message)  // 显示错误信息
     router.push('/login')  // 如果获取失败，跳转到登录页面
   }
+}
+
+// 格式化性别
+const formatGender = (row, column, cellValue) => {
+  return cellValue === 'M'? '男':'女';
 }
 
 // 退出登录，清除token
 const handleLogout = () => {
   localStorage.removeItem('token')  // 清除本地存储的token
-  ElMessage.success('已退出登录')  // 显示成功信息
+  ElMessage.warning('已退出登录')  // 显示成功信息
   router.push('/login')  // 跳转回登录页面
 }
 
